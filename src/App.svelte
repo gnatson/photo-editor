@@ -2,6 +2,7 @@
   // todo: construct custom filter
   // animated transitions with svelte/easing... (bounce effect)
   //  user preferences? (ex. slider step)
+  // animated preview
 
   const sample_filters = []
   sample_filters.push('filter: drop-shadow(16px 16px 20px red) invert(75%);')
