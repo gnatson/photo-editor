@@ -289,11 +289,7 @@
     transform: translateY(-10px);
   }
 
-  @keyframes scaleUp {
-    from {
-      transform: scale(0.5);
-    }
-  }
+ 
 </style>
 
 <svelte:window on:mousemove={windowMouseMove} on:mouseout={windowMouseLeave} />

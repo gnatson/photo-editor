@@ -1,0 +1,5 @@
+@keyframes scaleUp {
+  from {
+    transform: scale(0.5);
+  }
+}
