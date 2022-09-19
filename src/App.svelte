@@ -23,6 +23,10 @@
   main {
     user-select: none;
   }
+
+  img {
+    transition: .5s;
+  }
 </style>
 
 <main>
