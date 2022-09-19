@@ -1,5 +1,6 @@
 <script>
   import Properties from './Components/Properties.svelte'
+  import Timeline from './Components/Timeline.svelte'
 
   let blur = 0
   let contrast = 100
@@ -291,14 +292,14 @@
   {/if}
 
   {#if UI.showTimeline}
-    <div id="timeline">
-      {#each timeline as state, id}
-        <div
-          on:click={() => recoverState(state)}
-          class="state"
-          style={`background-image: url(${photo});` + filtersToCSS(state)} />
-      {/each}
-    </div>
+  <div id="timeline">
+    {#each timeline as state, id}
+      <div
+        on:click={() => recoverState(state)}
+        class="state"
+        style={`background-image: url(${photo});` + filtersToCSS(state)} />
+    {/each}
+  </div>
   {/if}
 
   {#if UI.showMenu}
