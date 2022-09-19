@@ -9,3 +9,7 @@
 # repo
 
 - [ ] github repo link
+
+# css filters
+
+- [ ] add ready-to-use presents
