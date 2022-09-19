@@ -25,7 +25,23 @@
   }
 
   img {
-    transition: .5s;
+    transition: 0.5s;
+    z-index: 1;
+  }
+
+  #properties {
+    z-index: 2;
+  }
+
+  @keyframes clip {
+    0% {
+    }
+    50% {
+      clip-path: circle(260px at top);
+    }
+    100% {
+      clip-path: circle(260px at center);
+    }
   }
 </style>
 
@@ -36,7 +52,6 @@
   </div>
 
   <div id="properties">
-
     <p>
       Blur:
       <input type="range" min={0} max={5} step={1} bind:value={blur} />
