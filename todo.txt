@@ -17,3 +17,11 @@
 # history, timeline
 
 - [ ] show edits (on user stop input)
+
+# other (unsorted)
+
+- [ ] todo: construct custom filter
+- [ ] animated transitions with svelte/easing... (bounce effect)
+- [ ] user preferences? (ex. slider step)
+- [ ] animated preview
+- [ ] split view
