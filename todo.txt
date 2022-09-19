@@ -22,7 +22,7 @@
 # other (unsorted)
 
 - [ ] todo: construct custom filter
-- [ ] animated transitions with svelte/easing... (bounce effect)
+- [ ] animated transitions with svelte/easing... (bounce effect) for UI elements
 - [ ] user preferences? (ex. slider step)
 - [ ] animated preview
 - [x] split view
