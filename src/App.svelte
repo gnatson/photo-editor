@@ -288,8 +288,6 @@
   #timeline > .state:hover {
     transform: translateY(-10px);
   }
-
- 
 </style>
 
 <svelte:window on:mousemove={windowMouseMove} on:mouseout={windowMouseLeave} />
@@ -344,6 +342,10 @@
   {#if UI.showMenu}
     <div id="menu">
       <button on:click={randomCat}>🐱‍👤 Random Cat</button>
+      <button
+        on:click={() => window.open('https://github.com/gnatson/photo-editor', '_blank')}>
+        🖤 GitHub Repo
+      </button>
     </div>
   {/if}
 </main>
