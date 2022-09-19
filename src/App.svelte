@@ -9,11 +9,12 @@
   let blur = 0
   let contrast = 100
   let brightness = 100
+  let saturate = 100
   let grayscale = 0
   let hue = 0
   let invert = 0
 
-  $: style = `filter: blur(${blur}px) contrast(${contrast}%) brightness(${brightness}%) grayscale(${grayscale}%) hue-rotate(${hue}deg) drop-shadow(16px 16px 20px black) invert(${invert}%);`
+  $: style = `filter: blur(${blur}px) contrast(${contrast}%) brightness(${brightness}%) saturate(${saturate}%) grayscale(${grayscale}%) hue-rotate(${hue}deg) drop-shadow(16px 16px 20px black) invert(${invert}%);`
 </script>
 
 <style>
@@ -46,6 +47,12 @@
       Brightness:
       <input type="range" min={0} max={300} step={10} bind:value={brightness} />
       <b>{brightness}%</b>
+    </p>
+
+    <p>
+      Saturate:
+      <input type="range" min={0} max={300} step={10} bind:value={saturate} />
+      <b>{saturate}%</b>
     </p>
 
     <p>
