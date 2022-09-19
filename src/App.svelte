@@ -30,6 +30,13 @@
   $: clip = `clip: rect(0px, ${window.innerWidth * (clipSplitPx / 100)}px, ${
     window.innerHeight
   }px, 0px);`
+
+  const mousedown = (e) => {}
+
+  const mousemove = (e) => {
+    const percent = ((e.clientX / window.innerWidth) * 100).toFixed(0)
+    clipSplitPx = percent
+  }
 </script>
 
 <style>
@@ -70,6 +77,7 @@
     /* transform: translateX(-50%); */
     background-position: center;
     background-size: cover;
+    pointer-events: none;
   }
 
   #timeline {
@@ -82,7 +90,11 @@
 </style>
 
 <main>
-  <div class="photo" {style} />
+  <div
+    class="photo"
+    {style}
+    on:mousedown={mousedown}
+    on:mousemove={mousemove} />
   <div class="photo" id="splitRight" style={background + clip} />
 
   <div id="properties">
