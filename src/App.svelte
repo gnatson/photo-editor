@@ -20,6 +20,8 @@
 
   let clipSplitPx = 50
 
+  let splitTextPosition = { x: 0, y: 0 }
+
   $: background = `background-image: url('${photo}');`
 
   $: style =
@@ -34,8 +36,10 @@
   const mousedown = (e) => {}
 
   const mousemove = (e) => {
-    const percent = ((e.clientX / window.innerWidth) * 100).toFixed(0)
+    const percent = +((e.clientX / window.innerWidth) * 100).toFixed(0)
     clipSplitPx = percent
+
+    splitTextPosition = { x: e.clientX, y: e.clientY }
   }
 </script>
 
@@ -72,6 +76,25 @@
     /* transform: rotate(5deg); */
   }
 
+  .text {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    color: rgba(0, 0, 0, 0.374);
+    font-size: 3rem;
+    z-index: 3;
+    pointer-events: none;
+    padding: 2rem;
+  }
+
+  .original.text {
+    transform: translateX(-100%) translateY(-50%);
+  }
+
+  .altered.text {
+    transform: translateY(-50%);
+  }
+
   .photo#splitRight {
     z-index: 2;
     /* transform: translateX(-50%); */
@@ -95,7 +118,18 @@
     {style}
     on:mousedown={mousedown}
     on:mousemove={mousemove} />
-  <div class="photo" id="splitRight" style={background + clip} />
+  <div class="photo original" id="splitRight" style={background + clip} />
+
+  <div
+    class="original text"
+    style="left: {splitTextPosition.x}px; top:{splitTextPosition.y}px;">
+    Original
+  </div>
+  <div
+    class="altered text"
+    style="left: {splitTextPosition.x}px; top:{splitTextPosition.y}px;">
+    Altered
+  </div>
 
   <div id="properties">
     <p>
