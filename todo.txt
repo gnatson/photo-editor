@@ -23,7 +23,8 @@
 
 # history, timeline
 
-- [ ] show edits (on user stop input)
+- [x] show edits (on user stop input)
+- [ ] save to localStorage
 
 # other (unsorted)
 
