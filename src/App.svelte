@@ -13,6 +13,8 @@
 
   let timeline = []
 
+  let showTextOriginalAltered = false
+
   const timelineSaveState = () => {
     // const timestamp =
     const MEMORY_LIMIT = 5
@@ -88,13 +90,20 @@
     window.innerHeight
   }px, 0px);`
 
-  const mousedown = (e) => {}
+  const mouseenter = () => {
+    showTextOriginalAltered = true
+  }
 
   const mousemove = (e) => {
     const percent = +((e.clientX / window.innerWidth) * 100).toFixed(0)
     clipSplitPx = percent
 
     splitTextPosition = { x: e.clientX, y: e.clientY }
+  }
+
+  const mouseleave = () => {
+    showTextOriginalAltered = false
+    clipSplitPx = 0
   }
 </script>
 
@@ -173,9 +182,12 @@
     width: 100vw;
 
     display: flex;
+    justify-content: center;
+    align-items: center;
     flex-wrap: wrap;
 
-    background-color: rgba(255, 255, 255, 0.3);
+    /* background-color: rgba(255, 255, 255, 0.3); */
+    background: transparent;
   }
 
   #timeline > .state {
@@ -193,6 +205,22 @@
 
     opacity: 1;
     margin: 0.3rem;
+
+    transition: 0.3s;
+
+    animation: 0.3s scaleUp;
+
+    border-radius: 5px;
+  }
+
+  #timeline > .state:hover {
+    transform: translateY(-10px);
+  }
+
+  @keyframes scaleUp {
+    from {
+      transform: scale(0.5);
+    }
   }
 </style>
 
@@ -200,20 +228,23 @@
   <div
     class="photo"
     {style}
-    on:mousedown={mousedown}
+    on:mouseenter={mouseenter}
+    on:mouseleave={mouseleave}
     on:mousemove={mousemove} />
   <div class="photo original" id="splitRight" style={background + clip} />
 
-  <div
-    class="original text"
-    style="left: {splitTextPosition.x}px; top:{splitTextPosition.y}px;">
-    Original
-  </div>
-  <div
-    class="altered text"
-    style="left: {splitTextPosition.x}px; top:{splitTextPosition.y}px;">
-    Altered
-  </div>
+  {#if showTextOriginalAltered}
+    <div
+      class="original text"
+      style="left: {splitTextPosition.x}px; top:{splitTextPosition.y}px;">
+      Original
+    </div>
+    <div
+      class="altered text"
+      style="left: {splitTextPosition.x}px; top:{splitTextPosition.y}px;">
+      Altered
+    </div>
+  {/if}
 
   <div id="properties">
     <p>
@@ -330,9 +361,7 @@
       <div
         on:click={() => recoverState(state)}
         class="state"
-        style={`background-image: url(${photo});` + filtersToCSS(state)}>
-        👉
-      </div>
+        style={`background-image: url(${photo});` + filtersToCSS(state)} />
     {/each}
   </div>
 </main>
