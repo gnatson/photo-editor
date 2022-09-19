@@ -4,13 +4,16 @@
   //  user preferences? (ex. slider step)
   // animated preview
 
+  let photo = 'photos/geran-de-klerk-bKhETeDV1WM-unsplash.jpg'
+
   let blur = 0
   let contrast = 100
+  let brightness = 100
   let grayscale = 0
   let hue = 0
   let invert = 0
 
-  $: style = `filter: blur(${blur}px) contrast(${contrast}%) grayscale(${grayscale}%) hue-rotate(${hue}deg) drop-shadow(16px 16px 20px black) invert(${invert}%);`
+  $: style = `filter: blur(${blur}px) contrast(${contrast}%) brightness(${brightness}%) grayscale(${grayscale}%) hue-rotate(${hue}deg) drop-shadow(16px 16px 20px black) invert(${invert}%);`
 </script>
 
 <style>
@@ -21,7 +24,7 @@
 
 <main>
   <div id="photo">
-    <img src="photos/geran-de-klerk-bKhETeDV1WM-unsplash.jpg" alt="" {style} />
+    <img src={photo} alt="" {style} />
     <!-- maybe div.background? -->
   </div>
 
@@ -32,13 +35,19 @@
       <input type="range" min={0} max={5} step={1} bind:value={blur} />
       <b>{blur}px</b>
     </p>
-    
+
     <p>
       Contrast:
       <input type="range" min={0} max={300} step={10} bind:value={contrast} />
       <b>{contrast}%</b>
     </p>
-    
+
+    <p>
+      Brightness:
+      <input type="range" min={0} max={300} step={10} bind:value={brightness} />
+      <b>{brightness}%</b>
+    </p>
+
     <p>
       Grayscale:
       <input type="range" min={0} max={100} step={5} bind:value={grayscale} />
