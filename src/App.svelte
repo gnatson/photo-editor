@@ -4,17 +4,14 @@
   //  user preferences? (ex. slider step)
 
   const sample_filters = []
-  sample_filters.push('filter: blur(5px);')
-  sample_filters.push('filter: contrast(200%);')
-  sample_filters.push('filter: grayscale(80%);')
-  sample_filters.push('filter: hue-rotate(90deg);')
-  sample_filters.push('filter: hue-rotate(90deg);')
   sample_filters.push('filter: drop-shadow(16px 16px 20px red) invert(75%);')
 
   let blur = 0
   let contrast = 100
+  let grayscale = 0
+  let hue = 0
 
-  $: style = `filter: blur(${blur}px) contrast(${contrast}%);`
+  $: style = `filter: blur(${blur}px) contrast(${contrast}%) grayscale(${grayscale}%) hue-rotate(${hue}deg);`
 </script>
 
 <style>
@@ -39,6 +36,17 @@
       Contrast:
       <input type="range" min={0} max={300} step={10} bind:value={contrast} />
       <b>{contrast}%</b>
+    </p>
+    <p>
+      Grayscale:
+      <input type="range" min={0} max={100} step={5} bind:value={grayscale} />
+      <b>{grayscale}%</b>
+    </p>
+
+    <p>
+      Hue:
+      <input type="range" min={-365} max={365} step={1} bind:value={hue} />
+      <b>{hue}deg</b>
     </p>
   </div>
 
