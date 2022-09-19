@@ -6,4 +6,4 @@
 
 ## 🎥 preview.mp4
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/8Rx6EsRY32Q" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+https://user-images.githubusercontent.com/51968463/191050771-f583a02a-73f1-4e54-8817-03e6fc5e2b5b.mp4
