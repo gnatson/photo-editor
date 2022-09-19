@@ -9,7 +9,7 @@ Quick app using CSS filters to enchance (or messup) your fav cat photos. Saves y
 
 ## ⚡ Preview
 
-https://user-images.githubusercontent.com/51968463/191051785-3d25b1d4-8a8d-4903-80b9-187da0fbfa46.mp4
+https://user-images.githubusercontent.com/51968463/191126106-f1dd8c13-9b41-4a78-b049-6a23dd23896a.mp4
 
 > 👀 See it in action
 
