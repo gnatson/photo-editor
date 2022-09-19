@@ -6,6 +6,11 @@
 - [ ] layers
 - [ ] download photo
 
+# unsplash
+
+- [ ] api search
+- [ ] resize window (get resized picture - server side (unsplash url)
+
 # user instruction
 
 # repo
