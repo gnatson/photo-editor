@@ -80,7 +80,7 @@
     position: fixed;
     top: 0px;
     left: 0px;
-    color: rgba(0, 0, 0, 0.374);
+    color: rgba(0, 0, 0, 0.2);
     font-size: 3rem;
     z-index: 3;
     pointer-events: none;
