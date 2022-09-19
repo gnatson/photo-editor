@@ -1,5 +1,9 @@
 # 🌌 PhotoEditor
 
+## preview.png
+
 ![preview](preview.png)
 
-![preview](preview.mp4)
+## 🎥 preview.mp4
+
+<video src="preview.mp4">
