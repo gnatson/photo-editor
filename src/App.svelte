@@ -11,7 +11,16 @@
   let hue = 0
   let invert = 0
 
-  $: style = `filter: blur(${blur}px) contrast(${contrast}%) brightness(${brightness}%) saturate(${saturate}%) grayscale(${grayscale}%) opacity(${opacity}%) sepia(${sepia}%) hue-rotate(${hue}deg) drop-shadow(16px 16px 20px black) invert(${invert}%);`
+  let clipSplitPx = 150
+
+  $: background = `background-image: url('${photo}');`
+
+  $: style =
+    background +
+    `filter: blur(${blur}px) contrast(${contrast}%) brightness(${brightness}%) saturate(${saturate}%) grayscale(${grayscale}%) opacity(${opacity}%) sepia(${sepia}%) hue-rotate(${hue}deg) invert(${invert}%);`
+  // drop-shadow(16px 16px 20px black)
+
+  $: clip = `clip: rect(0px, ${clipSplitPx}px, 300px, 0px);`
 </script>
 
 <style>
@@ -19,21 +28,38 @@
     user-select: none;
   }
 
-  img {
-    transition: 0.5s;
-    z-index: 1;
-  }
-
   #properties {
     z-index: 2;
+  }
+
+  .photo {
+    /* transition: 0.1s; */
+    z-index: 1;
+
+    position: absolute;
+    top: 0px;
+    right: 0px;
+
+    width: 300px;
+    height: 300px;
+
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    /* background-origin: center; */
+  }
+
+  .photo#splitRight {
+    z-index: 2;
+    /* transform: translateX(-50%); */
+    background-position: center;
+    background-size: cover;
   }
 </style>
 
 <main>
-  <div id="photo">
-    <img src={photo} alt="" {style} />
-    <!-- maybe div.background? -->
-  </div>
+  <div class="photo" {style} />
+  <div class="photo" id="splitRight" style={background + clip} />
 
   <div id="properties">
     <p>
@@ -89,6 +115,17 @@
       <input type="range" min={0} max={100} step={10} bind:value={invert} />
       <b>{invert}%</b>
     </p>
+
+    <p>
+      clipSplitPx
+      <input
+        type="range"
+        min={0}
+        max={300}
+        step={1}
+        bind:value={clipSplitPx} />
+    </p>
+
   </div>
 
 </main>
