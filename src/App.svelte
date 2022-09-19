@@ -15,6 +15,8 @@
 
   const timelineSaveState = () => {
     // const timestamp =
+    const MEMORY_LIMIT = 5
+
     const state = {
       blur,
       contrast,
@@ -27,7 +29,26 @@
       invert,
     }
     timeline.push(state)
+
+    if (timeline.length > MEMORY_LIMIT) {
+      // timeline = timeline.slice(0, MEMORY_LIMIT)
+      timeline.shift()
+    }
     timeline = timeline
+  }
+
+  const recoverState = (savedState) => {
+    ;({
+      blur,
+      contrast,
+      brightness,
+      saturate,
+      grayscale,
+      opacity,
+      sepia,
+      hue,
+      invert,
+    } = savedState)
   }
 
   const unsplash = {
@@ -307,6 +328,7 @@
   <div id="timeline">
     {#each timeline as state, id}
       <div
+        on:click={() => recoverState(state)}
         class="state"
         style={`background-image: url(${photo});` + filtersToCSS(state)}>
         👉
