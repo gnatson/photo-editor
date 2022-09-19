@@ -1,5 +1,12 @@
 <script>
-  let photo = 'photos/geran-de-klerk-bKhETeDV1WM-unsplash.jpg'
+  const unsplash = {
+    photoId: 'photo-1514888286974-6c03e2ca1dba',
+    fit: 'crop',
+    width: 1143,
+    quality: 80,
+  }
+
+  let photo = `https://images.unsplash.com/${unsplash.photoId}?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=${unsplash.fit}&w=${unsplash.width}&q=${unsplash.quality}`
 
   let blur = 0
   let contrast = 100
@@ -29,6 +36,9 @@
   }
 
   #properties {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.367);
+    color: white;
     z-index: 2;
   }
 
@@ -40,8 +50,8 @@
     top: 0px;
     right: 0px;
 
-    width: 300px;
-    height: 300px;
+    width: 100%;
+    height: 100%;
 
     background-repeat: no-repeat;
     background-position: center;
@@ -118,12 +128,7 @@
 
     <p>
       clipSplitPx
-      <input
-        type="range"
-        min={0}
-        max={300}
-        step={1}
-        bind:value={clipSplitPx} />
+      <input type="range" min={0} max={300} step={1} bind:value={clipSplitPx} />
     </p>
 
   </div>
