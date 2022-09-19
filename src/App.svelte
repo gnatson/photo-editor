@@ -33,6 +33,7 @@
 <style>
   main {
     user-select: none;
+    overflow: hidden;
   }
 
   #properties {
@@ -56,7 +57,10 @@
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
+
+    /* transform: scale(1.2); */
     /* background-origin: center; */
+    /* transform: rotate(5deg); */
   }
 
   .photo#splitRight {
@@ -70,6 +74,8 @@
     position: fixed;
     bottom: 0px;
     z-index: 2;
+    text-align: center;
+    width: 100vw;
   }
 </style>
 
