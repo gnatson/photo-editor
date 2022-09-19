@@ -6,4 +6,4 @@
 
 ## 🎥 preview.mp4
 
-<video src="preview.mp4">
+<video src="preview.mp4" width=180>
