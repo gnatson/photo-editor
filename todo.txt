@@ -26,7 +26,7 @@
 - [ ] user preferences? (ex. slider step)
 - [ ] animated preview
 - [x] split view
-- [ ] font
+- [x] font
 
 # save
 
