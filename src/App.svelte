@@ -3,6 +3,7 @@
   // animated transitions with svelte/easing... (bounce effect)
   //  user preferences? (ex. slider step)
   // animated preview
+  // split view
 
   let photo = 'photos/geran-de-klerk-bKhETeDV1WM-unsplash.jpg'
 
