@@ -18,7 +18,7 @@
   let hue = 0
   let invert = 0
 
-  let clipSplitPx = 150
+  let clipSplitPx = 50
 
   $: background = `background-image: url('${photo}');`
 
@@ -27,7 +27,9 @@
     `filter: blur(${blur}px) contrast(${contrast}%) brightness(${brightness}%) saturate(${saturate}%) grayscale(${grayscale}%) opacity(${opacity}%) sepia(${sepia}%) hue-rotate(${hue}deg) invert(${invert}%);`
   // drop-shadow(16px 16px 20px black)
 
-  $: clip = `clip: rect(0px, ${clipSplitPx}px, 300px, 0px);`
+  $: clip = `clip: rect(0px, ${window.innerWidth * (clipSplitPx / 100)}px, ${
+    window.innerHeight
+  }px, 0px);`
 </script>
 
 <style>
@@ -140,7 +142,8 @@
 
     <p>
       clipSplitPx
-      <input type="range" min={0} max={300} step={1} bind:value={clipSplitPx} />
+      <input type="range" min={0} max={100} step={1} bind:value={clipSplitPx} />
+      <b>{clipSplitPx}%</b>
     </p>
 
   </div>
