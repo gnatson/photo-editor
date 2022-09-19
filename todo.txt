@@ -13,3 +13,7 @@
 # css filters
 
 - [ ] add ready-to-use presents
+
+# history, timeline
+
+- [ ] show edits (on user stop input)
