@@ -105,6 +105,23 @@
     showTextOriginalAltered = false
     clipSplitPx = 0
   }
+
+  const UI = { showMenu: true, showTimeline: true, showProperties: true }
+
+  const windowMouseMove = (e) => {
+    const mouseOnRigthHalfOfWindow = e.clientX > window.innerWidth / 2
+    const mouseOnBottomHalfOfWindow = e.clientY > window.innerHeight / 2
+
+    UI.showProperties = mouseOnRigthHalfOfWindow
+    UI.showMenu = !mouseOnRigthHalfOfWindow
+    UI.showTimeline = mouseOnBottomHalfOfWindow
+  }
+
+  const windowMouseLeave = () => {
+    // UI.showMenu = false
+    // UI.showProperties = false
+    // UI.showTimeline = false
+  }
 </script>
 
 <style>
@@ -118,11 +135,36 @@
     margin: 0;
   }
 
-  #properties {
+  #menu {
     position: absolute;
-    background-color: rgba(0, 0, 0, 0.367);
+    top: 0px;
+    left: 0px;
+
+    background-color: rgba(0, 0, 0, 0.2);
     color: white;
     z-index: 2;
+    padding: 2rem;
+    margin: 1rem;
+    border-top: 0.5rem solid white;
+    border-radius: 5px;
+
+    animation: 0.3s scaleUp;
+  }
+
+  #properties {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+
+    background-color: rgba(0, 0, 0, 0.2);
+    color: white;
+    z-index: 2;
+    padding: 2rem;
+    margin: 1rem;
+    border-top: 0.5rem solid white;
+    border-radius: 5px;
+
+    animation: 0.3s scaleUp;
   }
 
   .photo {
@@ -224,6 +266,8 @@
   }
 </style>
 
+<svelte:window on:mousemove={windowMouseMove} on:mouseout={windowMouseLeave} />
+
 <main>
   <div
     class="photo"
@@ -246,122 +290,148 @@
     </div>
   {/if}
 
-  <div id="properties">
-    <p>
-      Blur:
-      <input
-        type="range"
-        min={0}
-        max={5}
-        step={1}
-        bind:value={blur}
-        on:change={timelineSaveState} />
-      <b>{blur}px</b>
-    </p>
+  {#if UI.showProperties}
+    <div id="properties">
+      <p>
+        Blur
+        <b>{blur}px</b>
+      </p>
+      <p>
+        <input
+          type="range"
+          min={0}
+          max={5}
+          step={1}
+          bind:value={blur}
+          on:change={timelineSaveState} />
+      </p>
+      <p>
+        Contrast
+        <b>{contrast}%</b>
+      </p>
+      <p>
+        <input
+          type="range"
+          min={0}
+          max={300}
+          step={10}
+          bind:value={contrast}
+          on:change={timelineSaveState} />
+      </p>
+      <p>
+        Brightness
+        <b>{brightness}%</b>
+      </p>
+      <p>
+        <input
+          type="range"
+          min={0}
+          max={300}
+          step={10}
+          bind:value={brightness}
+          on:change={timelineSaveState} />
+      </p>
 
-    <p>
-      Contrast:
-      <input
-        type="range"
-        min={0}
-        max={300}
-        step={10}
-        bind:value={contrast}
-        on:change={timelineSaveState} />
-      <b>{contrast}%</b>
-    </p>
+      <p>
+        Saturate
+        <b>{saturate}%</b>
+      </p>
+      <p>
+        <input
+          type="range"
+          min={0}
+          max={300}
+          step={10}
+          bind:value={saturate}
+          on:change={timelineSaveState} />
+      </p>
 
-    <p>
-      Brightness:
-      <input
-        type="range"
-        min={0}
-        max={300}
-        step={10}
-        bind:value={brightness}
-        on:change={timelineSaveState} />
-      <b>{brightness}%</b>
-    </p>
+      <p>
+        Grayscale
+        <b>{grayscale}%</b>
+      </p>
+      <p>
+        <input
+          type="range"
+          min={0}
+          max={100}
+          step={5}
+          bind:value={grayscale}
+          on:change={timelineSaveState} />
+      </p>
 
-    <p>
-      Saturate:
-      <input
-        type="range"
-        min={0}
-        max={300}
-        step={10}
-        bind:value={saturate}
-        on:change={timelineSaveState} />
-      <b>{saturate}%</b>
-    </p>
+      <p>
+        Opacity
+        <b>{opacity}%</b>
+      </p>
+      <p>
+        <input
+          type="range"
+          min={0}
+          max={100}
+          step={5}
+          bind:value={opacity}
+          on:change={timelineSaveState} />
+      </p>
 
-    <p>
-      Grayscale:
-      <input
-        type="range"
-        min={0}
-        max={100}
-        step={5}
-        bind:value={grayscale}
-        on:change={timelineSaveState} />
-      <b>{grayscale}%</b>
-    </p>
+      <p>
+        Sepia
+        <b>{sepia}%</b>
+      </p>
+      <p>
+        <input
+          type="range"
+          min={0}
+          max={100}
+          step={5}
+          bind:value={sepia}
+          on:change={timelineSaveState} />
+      </p>
 
-    <p>
-      Opacity:
-      <input
-        type="range"
-        min={0}
-        max={100}
-        step={5}
-        bind:value={opacity}
-        on:change={timelineSaveState} />
-      <b>{opacity}%</b>
-    </p>
+      <p>
+        Hue
+        <b>{hue}deg</b>
+      </p>
+      <p>
+        <input
+          type="range"
+          min={-365}
+          max={365}
+          step={1}
+          bind:value={hue}
+          on:change={timelineSaveState} />
+      </p>
 
-    <p>
-      Sepia:
-      <input
-        type="range"
-        min={0}
-        max={100}
-        step={5}
-        bind:value={sepia}
-        on:change={timelineSaveState} />
-      <b>{sepia}%</b>
-    </p>
+      <p>
+        Invert Colors
+        <b>{invert}%</b>
+      </p>
+      <p>
+        <input
+          type="range"
+          min={0}
+          max={100}
+          step={10}
+          bind:value={invert}
+          on:change={timelineSaveState} />
+      </p>
+    </div>
+  {/if}
 
-    <p>
-      Hue:
-      <input
-        type="range"
-        min={-365}
-        max={365}
-        step={1}
-        bind:value={hue}
-        on:change={timelineSaveState} />
-      <b>{hue}deg</b>
-    </p>
+  {#if UI.showTimeline}
+    <div id="timeline">
+      {#each timeline as state, id}
+        <div
+          on:click={() => recoverState(state)}
+          class="state"
+          style={`background-image: url(${photo});` + filtersToCSS(state)} />
+      {/each}
+    </div>
+  {/if}
 
-    <p>
-      Invert Colors:
-      <input
-        type="range"
-        min={0}
-        max={100}
-        step={10}
-        bind:value={invert}
-        on:change={timelineSaveState} />
-      <b>{invert}%</b>
-    </p>
-  </div>
-
-  <div id="timeline">
-    {#each timeline as state, id}
-      <div
-        on:click={() => recoverState(state)}
-        class="state"
-        style={`background-image: url(${photo});` + filtersToCSS(state)} />
-    {/each}
-  </div>
+  {#if UI.showMenu}
+    <div id="menu">
+      <button>upload</button>
+    </div>
+  {/if}
 </main>
