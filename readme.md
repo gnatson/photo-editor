@@ -1,6 +1,6 @@
 # 🌌 PhotoEditor
 
-Quick app using CSS filters to enchance (or messup) your fav cat photos. Saves your every touch/edit in **timeline**. UX approach could be better but it's decent. UI elements show/hide when your cursor reach specific half of the screen. Try it out! 🤏
+Quick app using CSS filters to enchance (or messup) your fav cat photos. Saves your every touch/edit in **timeline**. UX approach could be better but it's decent. UI elements show/hide when your cursor reach specific half of the screen. [Try it out! 🤏](https://sebastian-photo-editor.pages.dev/)
 
 ## 👨‍💻 Dev setup instructions
 
