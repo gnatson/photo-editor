@@ -1,13 +1,4 @@
 <script>
-  const unsplash = {
-    photoId: 'photo-1514888286974-6c03e2ca1dba',
-    fit: 'crop',
-    width: 1143,
-    quality: 80,
-  }
-
-  let photo = `https://images.unsplash.com/${unsplash.photoId}?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=${unsplash.fit}&w=${unsplash.width}&q=${unsplash.quality}`
-
   let blur = 0
   let contrast = 100
   let brightness = 100
@@ -20,7 +11,50 @@
 
   let clipSplitPx = 50
 
+  let timeline = []
+
+  const timelineSaveState = () => {
+    // const timestamp =
+    const state = {
+      blur,
+      contrast,
+      brightness,
+      saturate,
+      grayscale,
+      opacity,
+      sepia,
+      hue,
+      invert,
+    }
+    timeline.push(state)
+    timeline = timeline
+  }
+
+  const unsplash = {
+    photoId: 'photo-1514888286974-6c03e2ca1dba',
+    fit: 'crop',
+    width: 1143,
+    quality: 80,
+  }
+
+  let photo = `https://images.unsplash.com/${unsplash.photoId}?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=${unsplash.fit}&w=${unsplash.width}&q=${unsplash.quality}`
+
   let splitTextPosition = { x: 0, y: 0 }
+
+  const filtersToCSS = (state) => {
+    const {
+      blur,
+      contrast,
+      brightness,
+      saturate,
+      grayscale,
+      opacity,
+      sepia,
+      hue,
+      invert,
+    } = state
+    return `filter: blur(${blur}px) contrast(${contrast}%) brightness(${brightness}%) saturate(${saturate}%) grayscale(${grayscale}%) opacity(${opacity}%) sepia(${sepia}%) hue-rotate(${hue}deg) invert(${invert}%);`
+  }
 
   $: background = `background-image: url('${photo}');`
 
@@ -50,6 +84,8 @@
     font-family: 'Poppins', sans-serif;
     user-select: none;
     overflow: hidden;
+    padding: 0;
+    margin: 0;
   }
 
   #properties {
@@ -109,9 +145,33 @@
   #timeline {
     position: fixed;
     bottom: 0px;
+    left: 0px;
     z-index: 2;
     text-align: center;
+
     width: 100vw;
+
+    display: flex;
+    flex-wrap: wrap;
+
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+
+  #timeline > .state {
+    width: 80px;
+    height: 80px;
+
+    background-image: url();
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    opacity: 1;
+    margin: 0.3rem;
   }
 </style>
 
@@ -137,65 +197,120 @@
   <div id="properties">
     <p>
       Blur:
-      <input type="range" min={0} max={5} step={1} bind:value={blur} />
+      <input
+        type="range"
+        min={0}
+        max={5}
+        step={1}
+        bind:value={blur}
+        on:change={timelineSaveState} />
       <b>{blur}px</b>
     </p>
 
     <p>
       Contrast:
-      <input type="range" min={0} max={300} step={10} bind:value={contrast} />
+      <input
+        type="range"
+        min={0}
+        max={300}
+        step={10}
+        bind:value={contrast}
+        on:change={timelineSaveState} />
       <b>{contrast}%</b>
     </p>
 
     <p>
       Brightness:
-      <input type="range" min={0} max={300} step={10} bind:value={brightness} />
+      <input
+        type="range"
+        min={0}
+        max={300}
+        step={10}
+        bind:value={brightness}
+        on:change={timelineSaveState} />
       <b>{brightness}%</b>
     </p>
 
     <p>
       Saturate:
-      <input type="range" min={0} max={300} step={10} bind:value={saturate} />
+      <input
+        type="range"
+        min={0}
+        max={300}
+        step={10}
+        bind:value={saturate}
+        on:change={timelineSaveState} />
       <b>{saturate}%</b>
     </p>
 
     <p>
       Grayscale:
-      <input type="range" min={0} max={100} step={5} bind:value={grayscale} />
+      <input
+        type="range"
+        min={0}
+        max={100}
+        step={5}
+        bind:value={grayscale}
+        on:change={timelineSaveState} />
       <b>{grayscale}%</b>
     </p>
 
     <p>
       Opacity:
-      <input type="range" min={0} max={100} step={5} bind:value={opacity} />
+      <input
+        type="range"
+        min={0}
+        max={100}
+        step={5}
+        bind:value={opacity}
+        on:change={timelineSaveState} />
       <b>{opacity}%</b>
     </p>
 
     <p>
       Sepia:
-      <input type="range" min={0} max={100} step={5} bind:value={sepia} />
+      <input
+        type="range"
+        min={0}
+        max={100}
+        step={5}
+        bind:value={sepia}
+        on:change={timelineSaveState} />
       <b>{sepia}%</b>
     </p>
 
     <p>
       Hue:
-      <input type="range" min={-365} max={365} step={1} bind:value={hue} />
+      <input
+        type="range"
+        min={-365}
+        max={365}
+        step={1}
+        bind:value={hue}
+        on:change={timelineSaveState} />
       <b>{hue}deg</b>
     </p>
 
     <p>
       Invert Colors:
-      <input type="range" min={0} max={100} step={10} bind:value={invert} />
+      <input
+        type="range"
+        min={0}
+        max={100}
+        step={10}
+        bind:value={invert}
+        on:change={timelineSaveState} />
       <b>{invert}%</b>
     </p>
-
-    <p>
-      clipSplitPx
-      <input type="range" min={0} max={100} step={1} bind:value={clipSplitPx} />
-      <b>{clipSplitPx}%</b>
-    </p>
-
   </div>
 
-  <div id="timeline">--[edit.1]--->[edit.2]--></div>
+  <div id="timeline">
+    {#each timeline as state, id}
+      <div
+        class="state"
+        style={`background-image: url(${photo});` + filtersToCSS(state)}>
+        👉
+      </div>
+    {/each}
+  </div>
 </main>
