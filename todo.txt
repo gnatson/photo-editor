@@ -1,0 +1,11 @@
+# main features
+
+- [ ] upload photo
+- [ ] mix filters
+- [ ] layers
+
+# user instruction
+
+# repo
+
+- [ ] github repo link
