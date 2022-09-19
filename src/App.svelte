@@ -65,6 +65,12 @@
     background-position: center;
     background-size: cover;
   }
+
+  #timeline {
+    position: fixed;
+    bottom: 0px;
+    z-index: 2;
+  }
 </style>
 
 <main>
@@ -133,4 +139,5 @@
 
   </div>
 
+  <div id="timeline">--[edit.1]--->[edit.2]--></div>
 </main>
