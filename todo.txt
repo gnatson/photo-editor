@@ -27,3 +27,8 @@
 - [ ] animated preview
 - [x] split view
 - [ ] font
+
+# save
+
+- [ ] save presents
+- [ ] save user files
