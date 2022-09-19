@@ -18,6 +18,12 @@
 
   let showTextOriginalAltered = false
 
+  const getRandomInt = (min, max) => {
+    min = Math.ceil(min)
+    max = Math.floor(max)
+    return Math.floor(Math.random() * (max - min) + min)
+  }
+
   const timelineSaveState = () => {
     // const timestamp =
     const MEMORY_LIMIT = 5
@@ -56,18 +62,33 @@
     } = savedState)
   }
 
+  // cats pack
   const unsplash = {
-    photoId: 'photo-1514888286974-6c03e2ca1dba',
-    fit: 'crop',
-    width: 1143,
-    quality: 80,
+    settings: {
+      fit: 'crop',
+      width: 1200,
+      quality: 80,
+    },
+    albums: {
+      cats: [
+        'photo-1514888286974-6c03e2ca1dba',
+        'photo-1573865526739-10659fec78a5',
+        'photo-1596854407944-bf87f6fdd49e',
+        'photo-1606214174585-fe31582dc6ee',
+      ],
+    },
   }
 
-  let photo = `https://images.unsplash.com/${unsplash.photoId}?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=${unsplash.fit}&w=${unsplash.width}&q=${unsplash.quality}`
+  let catID = 3
+  $: photo = `https://images.unsplash.com/${unsplash.albums.cats[catID]}?&auto=format&fit=${unsplash.settings.fit}&w=${unsplash.settings.width}&q=${unsplash.settings.quality}`
 
-  photo = 'https://images.unsplash.com/photo-1573865526739-10659fec78a5?fit=crop&w=715&q=80'
-  photo = 'https://images.unsplash.com/photo-1596854407944-bf87f6fdd49e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80'
-  photo = 'https://images.unsplash.com/photo-1606214174585-fe31582dc6ee?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80'
+  const randomCat = () => {
+    let newCatID = catID
+    do {
+      newCatID = getRandomInt(0, unsplash.albums.cats.length)
+    } while (newCatID === catID)
+    catID = newCatID
+  }
 
   let splitTextPosition = { x: 0, y: 0 }
 
@@ -140,6 +161,24 @@
     overflow: hidden;
     padding: 0;
     margin: 0;
+  }
+
+  button,
+  input {
+    font-family: 'Poppins', sans-serif;
+  }
+
+  button {
+    padding: 1rem;
+    background-color: white;
+    border: none;
+    opacity: 0.7;
+    transition: 0.3s;
+    border-radius: 5px;
+  }
+
+  button:hover {
+    opacity: 0.9;
   }
 
   #menu {
@@ -296,19 +335,19 @@
   {/if}
 
   {#if UI.showTimeline}
-  <div id="timeline">
-    {#each timeline as state, id}
-      <div
-        on:click={() => recoverState(state)}
-        class="state"
-        style={`background-image: url(${photo});` + filtersToCSS(state)} />
-    {/each}
-  </div>
+    <div id="timeline">
+      {#each timeline as state, id}
+        <div
+          on:click={() => recoverState(state)}
+          class="state"
+          style={`background-image: url(${photo});` + filtersToCSS(state)} />
+      {/each}
+    </div>
   {/if}
 
   {#if UI.showMenu}
     <div id="menu">
-      <button>upload</button>
+      <button on:click={randomCat}>🐱‍👤 Random Cat</button>
     </div>
   {/if}
 </main>
