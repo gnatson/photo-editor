@@ -32,17 +32,6 @@
   #properties {
     z-index: 2;
   }
-
-  @keyframes clip {
-    0% {
-    }
-    50% {
-      clip-path: circle(260px at top);
-    }
-    100% {
-      clip-path: circle(260px at center);
-    }
-  }
 </style>
 
 <main>
