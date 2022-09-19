@@ -11,10 +11,12 @@
   let brightness = 100
   let saturate = 100
   let grayscale = 0
+  let opacity = 100
+  let sepia = 0
   let hue = 0
   let invert = 0
 
-  $: style = `filter: blur(${blur}px) contrast(${contrast}%) brightness(${brightness}%) saturate(${saturate}%) grayscale(${grayscale}%) hue-rotate(${hue}deg) drop-shadow(16px 16px 20px black) invert(${invert}%);`
+  $: style = `filter: blur(${blur}px) contrast(${contrast}%) brightness(${brightness}%) saturate(${saturate}%) grayscale(${grayscale}%) opacity(${opacity}%) sepia(${sepia}%) hue-rotate(${hue}deg) drop-shadow(16px 16px 20px black) invert(${invert}%);`
 </script>
 
 <style>
@@ -59,6 +61,18 @@
       Grayscale:
       <input type="range" min={0} max={100} step={5} bind:value={grayscale} />
       <b>{grayscale}%</b>
+    </p>
+
+    <p>
+      Opacity:
+      <input type="range" min={0} max={100} step={5} bind:value={opacity} />
+      <b>{opacity}%</b>
+    </p>
+
+    <p>
+      Sepia:
+      <input type="range" min={0} max={100} step={5} bind:value={sepia} />
+      <b>{sepia}%</b>
     </p>
 
     <p>
