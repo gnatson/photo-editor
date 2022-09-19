@@ -4,6 +4,7 @@
 - [ ] import photo from unsplash
 - [ ] mix filters
 - [ ] layers
+- [ ] download photo
 
 # user instruction
 
